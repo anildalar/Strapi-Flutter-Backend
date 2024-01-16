@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "author_contents",
+  "info": {
+    "singularName": "author-content",
+    "pluralName": "author-contents",
+    "displayName": "AuthorContent"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

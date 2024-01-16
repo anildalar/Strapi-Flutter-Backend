@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "my_hobiys",
+  "info": {
+    "singularName": "my-hobiy",
+    "pluralName": "my-hobiys",
+    "displayName": "MyHobiy"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
