@@ -1,10 +1,12 @@
 module.exports = { //JS Object
     //1. P:V
     // ...
-    'oklabs-students': {
-      enabled: true,
-      resolve: './src/plugins/oklabs-students'
+    'gorest-users': {
+        //1. P:V
+        enabled: true,
+        resolve: './src/plugins/gorest-users'
+        //2. Methods
     },
     // ...
-    //2. MEthod
-  }
+    //2. Methods/Functions Old function/new Style FatArrow
+}
