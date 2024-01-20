@@ -1,17 +1,26 @@
-/*
- *
- * HomePage
- *
- */
-
-import React from 'react';
-// import PropTypes from 'prop-types';
-import pluginId from '../../pluginId';
+//1. Import area
+import React,{ useState,useEffect } from 'react';
 import { Avatar, BaseCheckbox, Box, Flex, IconButton, Table, Tbody, Th,Tr,Td, Thead, Typography, VisuallyHidden } from '@strapi/design-system';
 import { Pencil, Trash } from '@strapi/icons';
 
-const HomePage = () => {
-  
+//RFC React Functional Component they return html tags
+//2. Function defination area
+const HomePage = () => { //Fat arrow function/new/old
+  //2.1 Hooks Variable area
+  const [fullname,setFullname] = useState('Anil Dollor1')
+  const [address,setAddress] = useState('Neemuch2')
+  const [mobileNo,setMobileNo] = useState('79994527113')
+
+  //After page reload
+  useEffect(()=>{
+    console.log('Page loaded successfully')
+    //http://localhost:1337/reqres-users/getusers
+  },[])
+
+  //2.2 Function defination area
+
+  //2.3 return statement
+  //Ever function return something
   return (
       <Box>
         <Table colCount={7} rowCount={1}>
@@ -24,16 +33,16 @@ const HomePage = () => {
                 <Typography variant="sigma">ID</Typography>
               </Th>
               <Th>
-                <Typography variant="sigma">Cover</Typography>
+                <Typography variant="sigma">Email</Typography>
               </Th>
               <Th>
-                <Typography variant="sigma">Description</Typography>
+                <Typography variant="sigma">First Name</Typography>
               </Th>
               <Th>
-                <Typography variant="sigma">Categories</Typography>
+                <Typography variant="sigma">Last Name</Typography>
               </Th>
               <Th>
-                <Typography variant="sigma">Contact</Typography>
+                <Typography variant="sigma">Avatar</Typography>
               </Th>
               <Th>
                 <VisuallyHidden>Actions</VisuallyHidden>
@@ -46,13 +55,13 @@ const HomePage = () => {
                   <BaseCheckbox />
                 </Td>
                 <Td>
-                  <Typography textColor="neutral800">1</Typography>
+                  <Typography textColor="neutral800">{fullname}</Typography>
                 </Td>
                 <Td>
-                  a
+                {address}
                 </Td>
                 <Td>
-                  <Typography textColor="neutral800">2</Typography>
+                  <Typography textColor="neutral800">{mobileNo}</Typography>
                 </Td>
                 <Td>
                   <Typography textColor="neutral800">3</Typography>
@@ -78,4 +87,6 @@ const HomePage = () => {
   );
 };
 
+
+//3. Export
 export default HomePage;

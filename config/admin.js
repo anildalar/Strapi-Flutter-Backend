@@ -1,4 +1,5 @@
-module.exports = ({ env }) => ({
+module.exports = ({ env }) => ({ // We are export a fat arrow function
+  //1. P:V
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
   },
@@ -14,4 +15,6 @@ module.exports = ({ env }) => ({
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
   },
+  url:"/letmein"
+  //2. Method
 });

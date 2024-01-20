@@ -482,6 +482,47 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
 }
 
+export interface PluginReqresUsersReqresuser extends Schema.CollectionType {
+  collectionName: 'reqresusers';
+  info: {
+    singularName: 'reqresuser';
+    pluralName: 'reqresusers';
+    displayName: 'ReqResUsers';
+    description: 'ReqResUsers';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    email: Attribute.String;
+    fname: Attribute.String;
+    lname: Attribute.String;
+    avatar: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::reqres-users.reqresuser',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::reqres-users.reqresuser',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginI18NLocale extends Schema.CollectionType {
   collectionName: 'i18n_locale';
   info: {
@@ -1381,6 +1422,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::reqres-users.reqresuser': PluginReqresUsersReqresuser;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
