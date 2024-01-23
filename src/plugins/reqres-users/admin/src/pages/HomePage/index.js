@@ -6,18 +6,25 @@ import { Pencil, Trash } from '@strapi/icons';
 //RFC React Functional Component they return html tags
 //2. Function defination area
 const HomePage = () => { //Fat arrow function/new/old
+  
   //2.1 Hooks Variable area
-  const [fullname,setFullname] = useState('Anil Dollor1')
-  const [address,setAddress] = useState('Neemuch2')
-  const [mobileNo,setMobileNo] = useState('79994527113')
+  const [reqResUsers,setReqResUsers] = useState([])
 
   //After page reload
   useEffect(()=>{
-    console.log('Page loaded successfully')
+    console.log('Page loaded successfully');
+    
     //http://localhost:1337/reqres-users/getusers
+    getReqResUsers()
   },[])
 
   //2.2 Function defination area
+  const  getReqResUsers = async ()=>{
+    let data = await fetch(`http://localhost:1337/reqres-users/getusers`)
+    //console.log('data >>>',await data.json())
+    const users = await data.json();
+    setReqResUsers(users)
+  }
 
   //2.3 return statement
   //Ever function return something
@@ -50,37 +57,49 @@ const HomePage = () => { //Fat arrow function/new/old
             </Tr>
           </Thead>
           <Tbody>
-              <Tr >
-                <Td>
-                  <BaseCheckbox />
-                </Td>
-                <Td>
-                  <Typography textColor="neutral800">{fullname}</Typography>
-                </Td>
-                <Td>
-                {address}
-                </Td>
-                <Td>
-                  <Typography textColor="neutral800">{mobileNo}</Typography>
-                </Td>
-                <Td>
-                  <Typography textColor="neutral800">3</Typography>
-                </Td>
-                <Td>
-                  <Typography textColor="neutral800">4</Typography>
-                </Td>
-                <Td>
-                  <Flex>
-                    <a href="https://www.google.com" target="_blank" rel="noreferrer">
-                      G
-                    </a>
-                    <IconButton onClick={() => console.log('edit')} label="Edit" noBorder icon={<Pencil />} />
-                    <Box paddingLeft={1}>
-                      <IconButton onClick={() => console.log('delete')} label="Delete" noBorder icon={<Trash />} />
-                    </Box>
-                  </Flex>
-                </Td>
-              </Tr>
+              {
+                reqResUsers.length > 0 &&
+                reqResUsers.map((cv,idx,arr)=>{
+                  //Every function return something
+                  return (
+                    <Tr key={idx}>
+                      <Td>
+                        <BaseCheckbox />
+                      </Td>
+                      <Td>
+                        <Typography textColor="neutral800">{cv.id}</Typography>
+                      </Td>
+                      <Td>
+                      </Td>
+                      <Td>
+                        <Typography textColor="neutral800">{cv.email}</Typography>
+                      </Td>
+                      <Td>
+                        <Typography textColor="neutral800">{cv.first_name}</Typography>
+                      </Td>
+                      <Td>
+                        <Typography textColor="neutral800">{cv.last_name}</Typography>
+                      </Td>
+                      <Td>
+                        <Typography textColor="neutral800">{cv.avatar}</Typography>
+                      </Td>
+                      <Td>
+                        <Flex>
+                          <a href="https://www.google.com" target="_blank" rel="noreferrer">
+                            G
+                          </a>
+                          <IconButton onClick={() => console.log('edit')} label="Edit" noBorder icon={<Pencil />} />
+                          <Box paddingLeft={1}>
+                            <IconButton onClick={() => console.log('delete')} label="Delete" noBorder icon={<Trash />} />
+                          </Box>
+                        </Flex>
+                      </Td>
+                    </Tr>
+                  )
+                })
+                
+              }
+              
           </Tbody>
         </Table>
       </Box>
