@@ -482,6 +482,45 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
 }
 
+export interface PluginStudentsContentTypeStudent
+  extends Schema.CollectionType {
+  collectionName: 'students';
+  info: {
+    singularName: 'content-type-student';
+    pluralName: 'content-type-students';
+    displayName: 'Student';
+    description: 'Student ';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::students.content-type-student',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::students.content-type-student',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginReqresUsersReqresuser extends Schema.CollectionType {
   collectionName: 'reqresusers';
   info: {
@@ -869,11 +908,6 @@ export interface ApiCollegeCollege extends Schema.CollectionType {
       'manyToMany',
       'api::department.department'
     >;
-    students: Attribute.Relation<
-      'api::college.college',
-      'manyToMany',
-      'api::student.student'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -945,11 +979,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'api::course.course',
       'manyToMany',
       'api::department.department'
-    >;
-    students: Attribute.Relation<
-      'api::course.course',
-      'manyToMany',
-      'api::student.student'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1262,48 +1291,6 @@ export interface ApiStateState extends Schema.CollectionType {
   };
 }
 
-export interface ApiStudentStudent extends Schema.CollectionType {
-  collectionName: 'students';
-  info: {
-    singularName: 'student';
-    pluralName: 'students';
-    displayName: 'Student';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    mobile: Attribute.String;
-    courses: Attribute.Relation<
-      'api::student.student',
-      'manyToMany',
-      'api::course.course'
-    >;
-    colleges: Attribute.Relation<
-      'api::student.student',
-      'manyToMany',
-      'api::college.college'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::student.student',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::student.student',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiSubCategorySubCategory extends Schema.CollectionType {
   collectionName: 'sub_categories';
   info: {
@@ -1422,6 +1409,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::students.content-type-student': PluginStudentsContentTypeStudent;
       'plugin::reqres-users.reqresuser': PluginReqresUsersReqresuser;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
@@ -1442,7 +1430,6 @@ declare module '@strapi/types' {
       'api::my-hobiy.my-hobiy': ApiMyHobiyMyHobiy;
       'api::product.product': ApiProductProduct;
       'api::state.state': ApiStateState;
-      'api::student.student': ApiStudentStudent;
       'api::sub-category.sub-category': ApiSubCategorySubCategory;
       'api::teacher.teacher': ApiTeacherTeacher;
       'api::university.university': ApiUniversityUniversity;

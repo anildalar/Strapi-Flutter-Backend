@@ -26,12 +26,6 @@
       "relation": "manyToMany",
       "target": "api::department.department",
       "inversedBy": "colleges"
-    },
-    "students": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::student.student",
-      "mappedBy": "colleges"
     }
   }
 }
