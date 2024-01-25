@@ -10,4 +10,5 @@ module.exports = [ // i am exporting an array []
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
+  { resolve: "./src/middlewares/redirect" },
 ];

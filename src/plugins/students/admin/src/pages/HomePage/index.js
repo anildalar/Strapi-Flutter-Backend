@@ -6,13 +6,25 @@
 
 import React from 'react';
 // import PropTypes from 'prop-types';
-import pluginId from '../../pluginId';
+import { Button, Grid, GridItem, TextInput } from '@strapi/design-system';
 
+//RFC = React Functional Component
 const HomePage = () => {
   return (
     <div>
-      <h1>{pluginId}&apos;s HomePage</h1>
-      <p>Happy coding</p>
+       <form>
+        <Grid>
+          <GridItem col={6}>
+              <TextInput placeholder="" label="Student Name" name="student"  />
+          </GridItem>
+        </Grid>
+        <Grid>
+          <GridItem col={6}>
+        
+            <Button variant="default">Submit</Button>
+          </GridItem>
+        </Grid>
+      </form>
     </div>
   );
 };
