@@ -8,4 +8,14 @@ module.exports = [
       policies: [],
     },
   },
+  {
+    method: 'POST',
+    path: '/mystudents',//http://localhost:1337/students/mystudents
+            //controller.method
+    handler: 'myController.create',
+    config: {
+      auth:false,
+      policies: [],
+    },
+  },
 ];
