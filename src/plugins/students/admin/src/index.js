@@ -6,7 +6,11 @@ import PluginIcon from './components/PluginIcon';
 
 const name = pluginPkg.strapi.name;
 
-export default {
+export default { // We are exporting a JS Object
+  //1. P:V
+
+
+  //2. Method
   register(app) {
     app.addMenuLink({
       to: `/plugins/${pluginId}`,
@@ -37,6 +41,7 @@ export default {
   },
 
   bootstrap(app) {},
+  
   async registerTrads({ locales }) {
     const importedTrads = await Promise.all(
       locales.map((locale) => {
