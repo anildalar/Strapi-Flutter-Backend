@@ -1,9 +1,12 @@
 'use strict';
 
 module.exports = ({ strapi }) => ({ // We are export a fat arrow function which return a js object
-  index(ctx) {
+  async index(ctx) {
               //function chainining
-    ctx.body = strapi.plugin('students').service('myService').getWelcomeMessage();
+    let entry = await strapi.plugin('students').service('myService').getWelcomeMessage();
+    ctx.body = {
+      data: entry
+    }
   },
   async create(ctx) {
               //function chainining CRUD

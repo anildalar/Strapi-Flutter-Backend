@@ -6,6 +6,7 @@ module.exports = [
     handler: 'myController.index',
     config: {
       policies: [],
+      auth:false
     },
   },
   {
@@ -14,8 +15,8 @@ module.exports = [
             //controller.method
     handler: 'myController.create',
     config: {
-      auth:false,
       policies: [],
+      auth:false
     },
   },
 ];
